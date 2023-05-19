@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/51a7cc97b5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="container flex justify-between align-center">
+        <h2>EventHub</h2>
+        <nav>
+          <a class="links" href="/events">See Events</a>
+        </nav>
+      </div>
+    </header>
+    <section class="container">
+      <h2 class="title">Event: <%= event.title %></h2>
+      <p class="summary">Summary: <%= event.summary %></p>
+      <p class="text">Host-Name: <%= event.host %></p>
+      <p class="text">Start-Date: <%= event.start_date %></p>
+      <p class="text">End-Date: <%= event.end_date %></p>
+      <p class="text">Category:
+        <% if (event.categories && event.categories.length > 0) { %>
+          <a href="/events/category/<%= event.categories[0]._id %>">
+            <%= event.categories[0].types %>
+          </a>
+        <% } %>
+      </p>
+      <p class="text">Location: <%= event.location %></p>
+      <div class="flex align-center justify-between like-btn">
+        <p class="text-likes"><%= Number(event.likes) || 0 %></p>
+        <a href="/events/<%= event.id %>/likes">
+          <i class="fa-solid fa-thumbs-up"></i>
+        </a>
+      </div>
+      <div>
+        <a href="/events/<%= event.id %>/edit">
+          <button class="btn-edt">edit</button>
+        </a>
+        <a href="/events/<%= event.id %>/delete">
+          <button class="btn-edt btn-dlt">delete</button>
+        </a>
+      </div>
+    </section>
+    <section class="container">
+      <form
+        class="form-remarks"
+        action="/events/<%= event.id %>/remarks"
+        method="POST"
+      >
+        <h2>Add Remarks</h2>
+        <textarea
+          name="title"
+          id=""
+          cols="25"
+          rows="5"
+          placeholder="Add Your Remarks"
+          class="form-control-remarks"
+          required
+        ></textarea>
+        <input
+          class="form-control-remarks"
+          type="text"
+          name="username"
+          placeholder="Add your Name"
+          required
+        />
+        <input
+          class="form-control-likes"
+          type="Number"
+          name="likes"
+          placeholder="likes"
+          value="0"
+        />
+        <input class="form-control-submit" type="submit" value="Add Remarks" />
+      </form>
+      <hr />
+      <div>
+        <h2 class="remarks-header">User's Remarks</h2>
+      </div>
+      <% event.remarks.forEach((remark) =>{ %>
+      <p class="text-remarks">Remark: <%= remark.title %></p>
+      <p class="text-remarks">User: <%= remark.username %></p>
+      <div class="flex align-center">
+        <div class="flex align-center justify-between like-btn-remark">
+          <p><%= Number(remark.likes) || 0 %></p>
+          <a class="text-likes" href="/remarks/<%= remark.id %>/likes">
+            <i class="fa-solid fa-thumbs-up"></i>
+          </a>
+        </div>
+        <a href="/remarks/<%= remark.id %>/edit">
+          <button class="btn-edt-remarks">Edit</button>
+        </a>
+        <a href="/remarks/<%= remark.id %>/delete">
+          <button class="btn-edt-remarks btn-dlt-remarks">Delete</button>
+        </a>
+      </div>
+      <% }) %>
+    </section>
+    <footer>
+      <section class="container">
+        <div class="flex justify-between">
+          <address class="flex-20">
+            EventHub: 123 Main Street, Bangalore, Karnataka, India,Pin-code
+            -560001
+          </address>
+          <div>
+            <a class="media-links" href="https://facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a class="media-links" href="https://instagram.com" target="_blank"
+              ><i class="fa-brands fa-square-instagram"></i
+            ></a>
+            <a class="media-links" href="https://twitter.com" target="_blank"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a class="media-links" href="https://youtube.com" target="_blank"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a class="media-links" href="https://dribble.com" target="_blank"
+              ><i class="fa-brands fa-dribbble"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
