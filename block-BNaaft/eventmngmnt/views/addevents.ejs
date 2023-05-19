@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/51a7cc97b5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="container flex justify-between align-center">
+        <h2>EventHub</h2>
+        <nav>
+          <a class="links" href="/events">See Events</a>
+          <a class="links" href="/categories/new">Add New Categories</a>
+        </nav>
+      </div>
+    </header>
+    <section class="container">
+      <form class="add-details-form" action="/events" method="POST">
+        <h2 class="form-header">Add Event Details</h2>
+        <input
+          class="form-control"
+          type="text"
+          name="title"
+          placeholder="Add Event Title"
+        />
+        <label class="label-sum" for="textarea">Add Brief Summary</label>
+        <textarea
+          name="summary"
+          cols="30"
+          rows="10"
+          id="textarea"
+          class="form-control-textarea"
+          placeholder="Add Brief Summary About the Event"
+        >
+        </textarea>
+        <input
+          type="text"
+          name="host"
+          placeholder="Add host Name person/organization"
+          class="form-control"
+        />
+        <label class="start-date" for="start-date">Event Kickoff Date :</label>
+        <input
+          type="date"
+          id="start-date"
+          name="start_date"
+          placeholder="Add Event Start Date"
+          class="form-control flex-84"
+        />
+        <label class="end-date" for="end-date">Event Wrap-up Date :</label>
+        <input
+          id="end-date"
+          type="date"
+          name="end_date"
+          placeholder="Add Event End Date"
+          class="form-control flex-84"
+        />
+        <select
+          class="form-control"
+          name="categories"
+        >
+          <option value="">Select the event type</option>
+          <% categories.forEach((category) => { %>
+          <option value="<%= category._id %>"><%= category.types %></option>
+          <% }) %>
+        </select>
+        <input
+          class="form-control"
+          type="text"
+          name="location"
+          placeholder="Add location"
+        />
+        <input
+          class="form-control"
+          type="Number"
+          name="likes"
+          placeholder="Add likes"
+          value="0"
+        />
+        <input class="btn-submit" type="submit" value="Add Events" />
+      </form>
+    </section>
+    <footer>
+      <section class="container">
+        <div class="flex justify-between">
+          <address class="flex-20">
+            EventHub: 123 Main Street, Bangalore, Karnataka, India,Pin-code
+            -560001
+          </address>
+          <div>
+            <a class="media-links" href="https://facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a class="media-links" href="https://instagram.com" target="_blank"
+              ><i class="fa-brands fa-square-instagram"></i
+            ></a>
+            <a class="media-links" href="https://twitter.com" target="_blank"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a class="media-links" href="https://youtube.com" target="_blank"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a class="media-links" href="https://dribble.com" target="_blank"
+              ><i class="fa-brands fa-dribbble"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>

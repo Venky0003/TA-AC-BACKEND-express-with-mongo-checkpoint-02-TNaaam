@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/51a7cc97b5.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="flex justify-between container align-center">
+        <h2>EventHub</h2>
+        <nav>
+          <a class="links" href="/events/new">Book An Event</a>
+        </nav>
+      </div>
+    </header>
+    <section class="container flex">
+      <div class="list flex-70">
+        <h2 class="text-center event-header">our recent events list</h2>
+        <% events.forEach((event) =>{ %>
+        <!-- code to display each event -->
+        <h2 class="text-center">
+          <a href="/events/<%= event._id %>"> <%= event.title %> </a>
+        </h2>
+        <% }) %>
+      </div>
+      <!-- Sidebar -->
+       <div class="flex-30">
+        <!-- Event Filters -->
+        <div class="filters">
+       
+          <h2>Filter Events</h2>
+          <label class="label-cat" for="category">Category:</label>
+          <select id="category" name="category">
+            <option value="">select your category</option>
+            <% categories.forEach((category) => { %>
+            <option value="<%= category._id %>"><%= category.types %></option>
+            <% }) %>
+          </select>
+
+       
+          <label class="label-start-date" for="start-dates">Start Date:</label>
+          <input type="date" id="start-dates" name="start-date" />
+
+          
+          <label class="label-loc"for="location">Location:</label>
+          <input type="text" id="location" name="location" />
+
+          <button class="filter-btn" type="submit">Apply Filters</button>
+          <button class="filter-btn clear-btn" type="button" id="clear-button">Clear Filters</button>
+        </div>
+        <div class="event-list">
+          <% events.forEach((event) => { %>
+          <h2><%= event.title %></h2>
+          <% }) %>
+        </div>
+  
+      </div>
+    </section>
+    <footer>
+      <section class="container">
+        <div class="flex justify-between">
+          <address class="flex-20">
+            EventHub: 123 Main Street, Bangalore, Karnataka, India,Pin-code
+            -560001
+          </address>
+          <div>
+            <a class="media-links" href="https://facebook.com" target="_blank"
+              ><i class="fa-brands fa-facebook-f"></i
+            ></a>
+            <a class="media-links" href="https://instagram.com" target="_blank"
+              ><i class="fa-brands fa-square-instagram"></i
+            ></a>
+            <a class="media-links" href="https://twitter.com" target="_blank"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            <a class="media-links" href="https://youtube.com" target="_blank"
+              ><i class="fa-brands fa-youtube"></i
+            ></a>
+            <a class="media-links" href="https://dribble.com" target="_blank"
+              ><i class="fa-brands fa-dribbble"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
